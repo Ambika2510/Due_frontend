@@ -9,7 +9,7 @@ const Workoutform = () => {
     const handlesubmit=async(e)=>{
          e.preventDefault();
         const workout={title,load,reps,description};
-      const  res=await axios.post('http://localhost:3003/api/workouts',workout);
+      const  res=await axios.post('https://fair-lime-gecko-tutu.cyclic.app/api/workouts',workout);
         console.log(res);   
         if(!res.status===200){
             console.log('Post error');

@@ -7,7 +7,7 @@ const Home = () => {
         const [workouts, setWorkouts] = useState(null)
         useEffect(() => {
             axios
-                .get("http://localhost:3003/api/workouts")
+                .get("https://fair-lime-gecko-tutu.cyclic.app/api/workouts")
                 .then((response) => {
                     // console.log(response.data);
                     setWorkouts(response.data)

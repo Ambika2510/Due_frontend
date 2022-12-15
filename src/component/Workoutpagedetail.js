@@ -11,7 +11,7 @@ const Workoutpagedetail = () => {
     const [workouts, setWorkouts] = useState([]);
     useEffect(() => {
         axios
-            .get("http://localhost:3003/api/workouts/"+routid)
+            .get("https://fair-lime-gecko-tutu.cyclic.app/api/workouts/"+routid)
             .then((response) => {
                 // console.log(response.data);
                 setWorkouts(response.data)
@@ -19,7 +19,7 @@ const Workoutpagedetail = () => {
     }, );
     const handleclick=async()=>{
         // console.log(workouts._id);
-        const  res=await axios.delete('http://localhost:3003/api/workouts/'+routid);
+        const  res=await axios.delete('https://fair-lime-gecko-tutu.cyclic.app/api/workouts/'+routid);
         if(!res.status===200){
           console.log('delete error');
       }

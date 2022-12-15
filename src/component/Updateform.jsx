@@ -11,7 +11,7 @@ const Updateform = () => {
     const handlesubmit=async(e)=>{
         e.preventDefault();
        const workout={title,load,reps,description};
-     const  res=await axios.patch('http://localhost:3003/api/workouts/'+routid,workout);
+     const  res=await axios.patch('https://fair-lime-gecko-tutu.cyclic.app/api/workouts/'+routid,workout);
        console.log(res);   
        if(!res.status===200){
            console.log('Update error');
