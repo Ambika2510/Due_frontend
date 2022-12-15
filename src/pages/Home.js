@@ -4,7 +4,7 @@ import axios from 'axios'
 import Workoutdetail from '../component/Workoutdetail'
 import Workoutform from '../component/Workoutform'
 const Home = () => {
-        const [workouts, setWorkouts] = useState(null)
+        const [workouts, setWorkouts] = useState([])
         useEffect(() => {
             axios
                 .get("https://fair-lime-gecko-tutu.cyclic.app/api/workouts")
@@ -12,9 +12,17 @@ const Home = () => {
                     // console.log(response.data);
                     setWorkouts(response.data)
                 });
-        }, );
-        if (!workouts) return <h4> No Due!..</h4>
-        return ( 
+        });
+        if (workouts.length===0){
+         return(
+         <div className = 'home'>
+            <h1> No Due!...</h1>
+            <Workoutform />
+            </div>)
+         
+        }
+        else{
+    return ( 
             <div className = 'home'>
                 <div className = "workouts" > {
                     workouts.map((workout) => ( < Workoutdetail key = { workout._id }
@@ -24,5 +32,6 @@ const Home = () => {
                             <Workoutform />
                             </div>
                         )
+                    }
                     }
                     export default Home
