@@ -13,7 +13,7 @@ const Home = () => {
                     setWorkouts(response.data)
                 });
         }, );
-        if (!workouts) return <h4> No data availaibe </h4>
+        if (!workouts) return <h4> No Due!..</h4>
         return ( 
             <div className = 'home'>
                 <div className = "workouts" > {
