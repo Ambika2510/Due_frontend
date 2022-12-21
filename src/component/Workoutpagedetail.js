@@ -10,16 +10,28 @@ const Workoutpagedetail = () => {
     const p='/update/'+routid;
     const [workouts, setWorkouts] = useState([]);
     useEffect(() => {
+        if(localStorage.length>0){
+            const user=JSON.parse(localStorage.getItem('user'));
+            const config={	
+                headers: {
+                'authorization': `Bearer ${user.token}`
+            }}
         axios
-            .get("https://fair-lime-gecko-tutu.cyclic.app/api/workouts/"+routid)
+            .get("https://fair-lime-gecko-tutu.cyclic.app/api/workouts/"+routid,config)
             .then((response) => {
                 // console.log(response.data);
                 setWorkouts(response.data)
             });
-    }, );
+    }}, );
     const handleclick=async()=>{
         // console.log(workouts._id);
-        const  res=await axios.delete('https://fair-lime-gecko-tutu.cyclic.app/api/workouts/'+routid);
+        if(localStorage.length>0){
+            const user=JSON.parse(localStorage.getItem('user'));
+            const config={	
+                headers: {
+                'authorization': `Bearer ${user.token}`
+            }}
+      const  res=await axios.delete('https://fair-lime-gecko-tutu.cyclic.app/api/workouts/'+routid,config);
         if(!res.status===200){
           console.log('delete error');
       }
@@ -27,6 +39,7 @@ const Workoutpagedetail = () => {
             console.log('delete success');
             
     }
+}
       }
 
     if (!workouts) return <h4> Succesfully deleted </h4>

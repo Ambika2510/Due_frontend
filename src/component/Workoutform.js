@@ -6,11 +6,18 @@ const Workoutform = () => {
     const[load,setload]=useState('');
     const[reps,setreps]=useState('');
     const [description,setdescription]=useState('');
+    const [error,seterror]=useState(null);
     const handlesubmit=async(e)=>{
          e.preventDefault();
+         if(localStorage.length>0){
+          const user=JSON.parse(localStorage.getItem('user'));
+          const config={	
+              headers: {
+              'authorization': `Bearer ${user.token}`
+          }}
         const workout={title,load,reps,description};
-      const  res=await axios.post('https://fair-lime-gecko-tutu.cyclic.app/api/workouts',workout);
-        console.log(res);   
+      const  res=await axios.post('https://fair-lime-gecko-tutu.cyclic.app/api/workouts',workout,config);
+        console.log(res.data);   
         if(!res.status===200){
             console.log('Post error');
         }
@@ -21,8 +28,15 @@ const Workoutform = () => {
             setdescription('');
                 console.log('Post success');
         }
-    }
-  return (
+        return;
+      }
+      else{
+          seterror('You must be logged in');
+          return;
+      }
+      }
+    
+   return (
       <form className="create" onSubmit={handlesubmit}>
    <h3>Add a Item detail</h3>
    <label>Item Name:</label>
@@ -34,6 +48,7 @@ const Workoutform = () => {
     <label for="body">Item description:</label>
     <textarea id="body" onChange={(e)=>setdescription(e.target.value)} value={description} placeholder="Write description of item" required></textarea>
     <button>Add Due</button>
+    {error && <div className="error">{error}</div>}
       </form>
  
   )
