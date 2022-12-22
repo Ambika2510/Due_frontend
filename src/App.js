@@ -6,6 +6,7 @@ import Workoutpagedetail from './component/Workoutpagedetail';
 import Updateform from './component/Updateform';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import Forgetpassword from './pages/Forgetpassword';
 function App() {
     let user=null;
     if(localStorage.length>0){
@@ -21,8 +22,7 @@ function App() {
  <Route path="/update/:id" element={<Updateform/>}/>
  <Route   path="/login"  element={!user? <Login /> : <Navigate to="/" />} />
  <Route  path="/signup"  element={!user ? <Signup /> : <Navigate to="/" />} />
- 
-
+ <Route path="/forgetpassword"  element={<Forgetpassword/>} />
  </Routes>
     </div>
     </BrowserRouter>

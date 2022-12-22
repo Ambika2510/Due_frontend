@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 
 const Login = () => {
         const [error, setError] = useState(null)
@@ -39,8 +40,10 @@ const Login = () => {
             }
             value = { password }/>
 
-            <button > Log in </button>  {
-                error && <div className = "error" > { error } </div>}   
+            <button > Log in </button>
+            <div><p>or</p></div>
+            <Link to="/forgetpassword" id="link">Forget password</Link>
+              {error && <div className = "error" > { error } </div>}   
                     </form>
 
             )
